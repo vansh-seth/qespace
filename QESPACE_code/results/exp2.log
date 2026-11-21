@@ -1,0 +1,24 @@
+p 1 angles [1.92  0.752] dev <E> -1.926
+p 2 angles [1.147 2.355 0.758 0.36 ] dev <E> -2.134
+p 3 angles [1.036 2.032 3.896 0.754 0.506 0.238] dev <E> -2.312
+p 4 angles [0.966 1.838 3.512 4.053 0.802 0.553 0.334 0.143] dev <E> -2.37
+12 classical {'exact_s': 0.00121, 'greedy_s': 0.00011, 'greedy_regret': 0.01154, 'diag_s': 6e-05, 'diag_regret': 0.10301, 'anneal_s': 0.00724, 'anneal_regret': 0.00186, 'greedy_hit': 0.75, 'diag_hit': 0.6, 'anneal_hit': 0.925}
+12 QAOA p 0 {'p_opt': 0.00024, 'p_near': 0.00032, 'p_feas': 0.28301, 'regret': 0.24315, 'shots99_median': 18860.4744}
+12 QAOA p 1 {'p_opt': 0.02134, 'p_near': 0.02562, 'p_feas': 0.83849, 'regret': 0.00912, 'shots99_median': 421.20537}
+12 QAOA p 2 {'p_opt': 0.0385, 'p_near': 0.04867, 'p_feas': 0.85063, 'regret': 0.00519, 'shots99_median': 220.19406}
+12 QAOA p 3 {'p_opt': 0.06993, 'p_near': 0.0916, 'p_feas': 0.85447, 'regret': 0.00548, 'shots99_median': 121.1681}
+12 QAOA p 4 {'p_opt': 0.08961, 'p_near': 0.11834, 'p_feas': 0.86873, 'regret': 0.00559, 'shots99_median': 95.90574}
+slack p 1 {'p_opt': 0.0034437983034453306, 'p_feas': 0.6516782210186495, 'regret': 0.026835896004714883}
+slack p 2 {'p_opt': 0.01710871876866657, 'p_feas': 0.6521633473552833, 'regret': 0.0035129854108640218}
+16 classical {'exact_s': 0.02856, 'greedy_s': 0.00021, 'greedy_regret': 0.01591, 'diag_s': 8e-05, 'diag_regret': 0.16526, 'anneal_s': 0.00698, 'anneal_regret': 0.00727, 'greedy_hit': 0.7, 'diag_hit': 0.575, 'anneal_hit': 0.8}
+16 QAOA p 0 {'p_opt': 2e-05, 'p_near': 2e-05, 'p_feas': 0.04658, 'regret': 0.57473, 'shots99_median': 301802.13072}
+16 QAOA p 1 {'p_opt': 0.00899, 'p_near': 0.0094, 'p_feas': 0.74705, 'regret': 0.02905, 'shots99_median': 1210.82122}
+16 QAOA p 2 {'p_opt': 0.01574, 'p_near': 0.01676, 'p_feas': 0.71271, 'regret': 0.01356, 'shots99_median': 526.39541}
+16 QAOA p 3 {'p_opt': 0.03623, 'p_near': 0.03856, 'p_feas': 0.77931, 'regret': 0.0099, 'shots99_median': 256.4288}
+16 QAOA p 4 {'p_opt': 0.05163, 'p_near': 0.05461, 'p_feas': 0.80853, 'regret': 0.00782, 'shots99_median': 171.5909}
+20 classical {'exact_s': 0.63568, 'greedy_s': 0.00022, 'greedy_regret': 0.01977, 'diag_s': 7e-05, 'diag_regret': 0.21848, 'anneal_s': 0.00612, 'anneal_regret': 0.03842, 'greedy_hit': 0.675, 'diag_hit': 0.5, 'anneal_hit': 0.525}
+20 QAOA p 0 {'p_opt': 0.0, 'p_near': 0.0, 'p_feas': 0.00348, 'regret': 0.91362, 'shots99_median': 4828868.63036}
+20 QAOA p 1 {'p_opt': 0.00335, 'p_near': 0.00353, 'p_feas': 0.56604, 'regret': 0.06524, 'shots99_median': 4520.38414}
+20 QAOA p 2 {'p_opt': 0.00553, 'p_near': 0.00576, 'p_feas': 0.46573, 'regret': 0.04548, 'shots99_median': 2432.84582}
+20 QAOA p 3 {'p_opt': 0.01758, 'p_near': 0.01811, 'p_feas': 0.55529, 'regret': 0.01927, 'shots99_median': 763.38154}
+20 QAOA p 4 {'p_opt': 0.02738, 'p_near': 0.02824, 'p_feas': 0.60862, 'regret': 0.01392, 'shots99_median': 473.49353}

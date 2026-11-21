@@ -1,0 +1,7 @@
+p2=0.001 2q-gates=90  rel.err: raw 0.062 readout 0.048 ZNE-lin 0.013 quad 0.028 exp 0.014 | p_opt ideal 0.0670 noisy 0.0550 regret256 0.0000
+p2=0.0025 2q-gates=90  rel.err: raw 0.130 readout 0.118 ZNE-lin 0.032 quad 0.040 exp 0.028 | p_opt ideal 0.0670 noisy 0.0438 regret256 0.0047
+p2=0.005 2q-gates=90  rel.err: raw 0.223 readout 0.212 ZNE-lin 0.100 quad 0.041 exp 0.061 | p_opt ideal 0.0670 noisy 0.0309 regret256 0.0071
+iceberg p2 0.001 {'popt_ideal': 0.0766, 'popt_unenc': 0.067, 'popt_enc': 0.0718, 'accept': 0.8327, 'n2q_unenc': 90.0, 'n2q_enc': 141.0}
+iceberg p2 0.0025 {'popt_ideal': 0.0766, 'popt_unenc': 0.0614, 'popt_enc': 0.066, 'accept': 0.7732, 'n2q_unenc': 90.0, 'n2q_enc': 141.0}
+iceberg p2 0.005 {'popt_ideal': 0.0766, 'popt_unenc': 0.0552, 'popt_enc': 0.056, 'accept': 0.6901, 'n2q_unenc': 90.0, 'n2q_enc': 141.0}
+iceberg p2 0.01 {'popt_ideal': 0.0766, 'popt_unenc': 0.0424, 'popt_enc': 0.0385, 'accept': 0.5745, 'n2q_unenc': 90.0, 'n2q_enc': 141.0}

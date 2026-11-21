@@ -1,0 +1,67 @@
+\clearpage
+\section*{Tables}
+
+\begin{table}[h]
+\caption*{\textbf{Table 1 $|$ How four biological constraints enter the allocation problem.} Each constraint contributes one model variable and one term of equations (4)--(6). Synaptic states are classical throughout; the quantum processor only samples solutions of the resulting problem.}
+\small
+\begin{tabular}{p{2.6cm}p{3.6cm}p{4.6cm}p{4.0cm}}
+\toprule
+Constraint & Model variable & Term in the allocation problem & Role of the quantum processor \\
+\midrule
+Metabolic cost of plasticity & Resource pool $A_{t}$, branch cost $c_{k}$ & Budget $c^{\top}u\le B_{t}$ and price $\lambda_{E}c_{k}$ & Constraint encoded in $H_{C}$ by unbalanced penalization; feasibility checked classically \\
+Unreliable vesicle release & Release probability $p_{i,t}$, release event $r_{i,t}$ & Risk term $\lambda_{U}\sum_{i}\delta_{i}^{2}(1-\bar p_{i})$ & Enters the local fields $h_{k}$ \\
+Local credit assignment & Eligibility $e_{i,t}$, error signal $m$ & Candidate $\delta$; gain $g^{\top}\delta^{(k)}$; interference $J_{kl}$ & Couplings $K_{kl}$ implemented by $R_{ZZ}$ gates \\
+Memory retention & Fisher importance $F_{i}$, anchor $w_{i}^{\star}$ & Consolidation increment in $a_{k}$ & Enters the local fields $h_{k}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption*{\textbf{Table 2 $|$ Two-qubit resources of the allocation circuits at depth $p=2$.} Analytic counts before device-specific optimization. Dense: all branch pairs coupled, odd--even swap network on a line, three CZ gates per interaction-and-swap block. Lattice-native: couplings only between neighbouring branches of a square grid, two CZ gates per $R_{ZZ}$ (one native gate if fractional $R_{ZZ}$ gates are used). Transpiled counts on hardware are to be added.}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+Branches $n$ & Grid & Dense: gates & Dense: depth & Lattice-native: gates & Lattice-native: depth \\
+\midrule
+12 & $3\times4$ & 396 & 72 & 68 & 16 \\
+20 & $4\times5$ & 1,140 & 120 & 124 & 16 \\
+40 & $5\times8$ & 4,680 & 240 & 268 & 16 \\
+64 & $8\times8$ & 12,096 & 384 & 448 & 16 \\
+100 & $10\times10$ & 29,700 & 600 & 720 & 16 \\
+120 & $10\times12$ & 42,840 & 720 & 872 & 16 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\clearpage
+\section*{Figure legends}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig1_concept}
+\caption*{\textbf{Fig. 1 $|$ Four biological constraints become one allocation problem.} Metabolic cost, unreliable vesicle release, local credit assignment and memory retention act on a classical spiking network whose plastic synapses are grouped into $n$ dendritic branches. In each learning window the network proposes a candidate update per branch; the constraints define a quadratic binary problem with one variable per branch and a budget set by the resource pool. The problem is mapped to an Ising Hamiltonian on $n$ qubits and sampled with a quantum approximate optimization circuit; the best feasible sample gates which branches commit their update.}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig2_circuits}
+\caption*{\textbf{Fig. 2 $|$ Quantum circuits.} \textbf{a}, One layer of the quantum approximate optimization algorithm for four branches: Hadamard gates prepare $\lvert+\rangle^{\otimes n}$, $R_{Z}$ and $R_{ZZ}$ rotations implement $e^{-i\gamma H_{C}}$, $R_{X}$ rotations implement the mixer, and all qubits are measured (M). \textbf{b}, Odd--even swap network: on a line of qubits, $n$ brick layers of $R_{ZZ}$ followed by a swap let every pair of branches interact once using nearest-neighbour gates only. \textbf{c}, Error-detected version in the $[[k+2,k,2]]$ code with two additional qubits t and b: a GHZ state in the $X$ basis encodes $\lvert+\rangle^{\otimes k}$, logical rotations are two-body $ZZ$ and $XX$ rotations, and shots with odd measured parity are discarded. \textbf{d}, Collision-model reservoir: memory qubits $m_{1}$ to $m_{3}$ are never reset; interface qubits $a_{1}$ and $a_{2}$ are reset, loaded with the inputs, coupled to the memory by $U(\tau)$ and measured at every time step.}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig3_continual}
+\caption*{\textbf{Fig. 3 $|$ Budgeted allocation in continual learning (simulation).} Networks learned five tasks in sequence; $n=12$ branches; 20 network seeds. \textbf{a}, Mean accuracy over the five tasks after the last task. \textbf{b}, Forgetting. Small points are individual seeds; large points and bars are mean $\pm$ s.e.m. Dense: every candidate committed. Dense+EWC: unconstrained update with elastic weight consolidation. Random mask: random feasible set of branches. Uniform sampler: best feasible of 256 uniformly random bit strings. Diagonal knapsack: exact solution with couplings set to zero. QAOA (sim.): noiseless depth-two circuit, 256 shots, fixed angles. \textbf{c}, Final accuracy against total plasticity cost. \textbf{d}, Fraction of learning windows in which each allocator returned the exact optimum (mean $\pm$ s.e.m. over seeds); labels give regret relative to the optimal objective.}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig4_qubo}
+\caption*{\textbf{Fig. 4 $|$ Sampler benchmark on instances extracted from learning (noiseless simulation).} Forty test instances per size; angles trained on 12-branch development instances and reused for all sizes. \textbf{a}, Probability that one shot returns an optimal feasible allocation, against circuit depth $p$ (mean $\pm$ s.e.m.); $p=0$ is uniform sampling. \textbf{b}, Regret of the best feasible sample among 256 shots; open squares and triangles show the greedy rule and simulated annealing on the same instances. \textbf{c}, Median number of shots needed for a 99\% chance of observing the optimum; dashed line, 256 shots.}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig5_noise}
+\caption*{\textbf{Fig. 5 $|$ Simulated device noise, error mitigation and error detection.} Ten-branch instances, depth two; depolarizing gate noise and read-out error (Methods). \textbf{a}, Relative error of $\langle H_{C}\rangle$ with respect to the noiseless value for raw data, after read-out mitigation, and after zero-noise extrapolation with linear and exponential fits (16 instances, mean $\pm$ s.e.m.; three two-qubit gates charged per interaction). \textbf{b}, Probability that one shot returns the optimal feasible allocation under noise; dashed line, noiseless value; labels, regret of the best of 256 shots. \textbf{c}, Error detection: probability of the optimal allocation for the unencoded circuit and for accepted shots of the $[[k+2,k,2]]$-encoded circuit (left axis), and fraction of shots accepted (right axis, dotted), at equal error per gate and without routing overhead (10 instances).}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{fig6_reservoir}
+\caption*{\textbf{Fig. 6 $|$ Collision-model quantum reservoir against matched classical memory (simulation).} All models provide 12 read-out features; 10 input sequences; mean $\pm$ s.e.m. \textbf{a}, Squared correlation between the read-out and the input delayed by $\tau$ steps; MC, memory capacity summed over the delays shown. \textbf{b}, Normalized test error for the delayed product $s_{t}s_{t-\tau}$, averaged over $\tau=1$ to 4. \textbf{c}, Normalized test error for the three-factor credit signal. Quantum: exact expectation values; 2,048 shots: binomial sampling noise; dephased: phase-flip probability 0.05 per memory qubit per step; ESN: echo-state network; Oracle: delay line plus the exact nonlinear terms of the task.}
+\end{figure}

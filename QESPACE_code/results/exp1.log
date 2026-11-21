@@ -1,0 +1,37 @@
+transfer angles [1.3527 2.7575 0.803  0.3072]
+0 {'dense': 0.658, 'dense_ewc': 0.726, 'random': 0.691, 'diag': 0.74, 'greedy': 0.742, 'anneal': 0.749, 'exact': 0.747, 'qaoa': 0.747, 'uniform': 0.749}
+1 {'dense': 0.768, 'dense_ewc': 0.847, 'random': 0.828, 'diag': 0.845, 'greedy': 0.84, 'anneal': 0.825, 'exact': 0.833, 'qaoa': 0.842, 'uniform': 0.836}
+2 {'dense': 0.629, 'dense_ewc': 0.69, 'random': 0.645, 'diag': 0.671, 'greedy': 0.672, 'anneal': 0.663, 'exact': 0.683, 'qaoa': 0.66, 'uniform': 0.659}
+3 {'dense': 0.676, 'dense_ewc': 0.688, 'random': 0.741, 'diag': 0.754, 'greedy': 0.756, 'anneal': 0.766, 'exact': 0.759, 'qaoa': 0.759, 'uniform': 0.749}
+4 {'dense': 0.773, 'dense_ewc': 0.814, 'random': 0.805, 'diag': 0.814, 'greedy': 0.795, 'anneal': 0.789, 'exact': 0.803, 'qaoa': 0.801, 'uniform': 0.832}
+5 {'dense': 0.67, 'dense_ewc': 0.88, 'random': 0.737, 'diag': 0.812, 'greedy': 0.822, 'anneal': 0.826, 'exact': 0.823, 'qaoa': 0.836, 'uniform': 0.809}
+6 {'dense': 0.631, 'dense_ewc': 0.676, 'random': 0.634, 'diag': 0.726, 'greedy': 0.714, 'anneal': 0.721, 'exact': 0.723, 'qaoa': 0.723, 'uniform': 0.691}
+7 {'dense': 0.667, 'dense_ewc': 0.676, 'random': 0.677, 'diag': 0.703, 'greedy': 0.687, 'anneal': 0.693, 'exact': 0.708, 'qaoa': 0.701, 'uniform': 0.701}
+8 {'dense': 0.627, 'dense_ewc': 0.684, 'random': 0.688, 'diag': 0.675, 'greedy': 0.692, 'anneal': 0.69, 'exact': 0.695, 'qaoa': 0.674, 'uniform': 0.677}
+9 {'dense': 0.667, 'dense_ewc': 0.677, 'random': 0.686, 'diag': 0.708, 'greedy': 0.678, 'anneal': 0.682, 'exact': 0.694, 'qaoa': 0.694, 'uniform': 0.7}
+10 {'dense': 0.652, 'dense_ewc': 0.819, 'random': 0.682, 'diag': 0.836, 'greedy': 0.796, 'anneal': 0.823, 'exact': 0.819, 'qaoa': 0.827, 'uniform': 0.799}
+11 {'dense': 0.693, 'dense_ewc': 0.742, 'random': 0.751, 'diag': 0.759, 'greedy': 0.761, 'anneal': 0.731, 'exact': 0.757, 'qaoa': 0.758, 'uniform': 0.72}
+12 {'dense': 0.707, 'dense_ewc': 0.852, 'random': 0.776, 'diag': 0.804, 'greedy': 0.813, 'anneal': 0.822, 'exact': 0.819, 'qaoa': 0.822, 'uniform': 0.767}
+13 {'dense': 0.625, 'dense_ewc': 0.676, 'random': 0.646, 'diag': 0.684, 'greedy': 0.678, 'anneal': 0.66, 'exact': 0.674, 'qaoa': 0.681, 'uniform': 0.694}
+14 {'dense': 0.676, 'dense_ewc': 0.771, 'random': 0.734, 'diag': 0.749, 'greedy': 0.742, 'anneal': 0.748, 'exact': 0.739, 'qaoa': 0.749, 'uniform': 0.739}
+15 {'dense': 0.709, 'dense_ewc': 0.756, 'random': 0.742, 'diag': 0.75, 'greedy': 0.745, 'anneal': 0.771, 'exact': 0.751, 'qaoa': 0.758, 'uniform': 0.755}
+16 {'dense': 0.675, 'dense_ewc': 0.762, 'random': 0.72, 'diag': 0.76, 'greedy': 0.761, 'anneal': 0.758, 'exact': 0.757, 'qaoa': 0.755, 'uniform': 0.743}
+17 {'dense': 0.78, 'dense_ewc': 0.858, 'random': 0.861, 'diag': 0.868, 'greedy': 0.871, 'anneal': 0.872, 'exact': 0.874, 'qaoa': 0.873, 'uniform': 0.841}
+18 {'dense': 0.608, 'dense_ewc': 0.699, 'random': 0.659, 'diag': 0.668, 'greedy': 0.667, 'anneal': 0.681, 'exact': 0.676, 'qaoa': 0.675, 'uniform': 0.68}
+19 {'dense': 0.673, 'dense_ewc': 0.773, 'random': 0.722, 'diag': 0.8, 'greedy': 0.802, 'anneal': 0.795, 'exact': 0.799, 'qaoa': 0.8, 'uniform': 0.799}
+
+allocator        final_acc  forgetting  update_cost  regret   hit_opt
+dense          0.678±0.011  0.335    7170.0
+dense_ewc      0.753±0.016  0.182    7170.0
+random         0.721±0.014  0.256    1805.6  0.7937  0.004
+diag           0.756±0.014  0.196    1742.4  0.0896  0.647
+greedy         0.752±0.014  0.193    1693.4  0.0159  0.782
+anneal         0.753±0.014  0.190    1688.0  0.0113  0.840
+exact          0.757±0.013  0.184    1684.2  0.0000  1.000
+qaoa           0.757±0.014  0.187    1681.4  0.0068  0.903
+uniform        0.747±0.013  0.205    1644.5  0.1536  0.092
+ablation full       acc 0.757 forget 0.184 cost 1684.2
+ablation no_fisher  acc 0.690 forget 0.305 cost 1785.7
+ablation no_risk    acc 0.753 forget 0.193 cost 1725.2
+ablation no_pair    acc 0.756 forget 0.196 cost 1742.4
+ablation no_energy  acc 0.678 forget 0.335 cost 7170.0

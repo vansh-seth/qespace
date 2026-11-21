@@ -1,0 +1,132 @@
+\documentclass[11pt,a4paper]{article}
+%% Supplementary Information for the Q-ESPACE manuscript (compile separately on Overleaf).
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usepackage{tikz}
+\usetikzlibrary{quantikz2}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\figurename}{Supplementary Fig.}
+\renewcommand{\tablename}{Supplementary Table}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.6em}
+\begin{document}
+\begin{center}
+{\Large\bfseries Supplementary Information}\\[0.5em]
+{\large Quantum-assisted allocation of metabolically constrained synaptic plasticity for continual learning in spiking networks}
+\end{center}
+
+\section*{Supplementary Note 1: Derivation of the allocation objective}
+Let $w$ be the plastic weights, $\delta$ the candidate change proposed by the three-factor rule and $D_k$ the diagonal projector onto branch $k$, so that the committed change is $\Delta w=\sum_k u_k D_k\delta=\sum_k u_k\delta^{(k)}$ with $u_k\in\{0,1\}$. A second-order expansion of the window loss gives
+\begin{equation}
+\ell(w+\Delta w)\approx\ell(w)+\sum_k u_k\,g^{\top}\delta^{(k)}+\tfrac12\sum_{k,l}u_ku_l\,\delta^{(k)\top}H\delta^{(l)} .
+\end{equation}
+Because $u_k^2=u_k$, the diagonal part of the quadratic form is linear in $u$. The consolidation penalty $\mathcal L_F(w)=\tfrac{\lambda_F}{2}\sum_iF_i(w_i-w_i^\star)^2$ changes by
+\begin{equation}
+\Delta\mathcal L_F=\frac{\lambda_F}{2}\sum_k u_k\sum_{i\in k}F_i\big[2(w_i-w_i^\star)\delta_i+\delta_i^2\big],
+\end{equation}
+which is exactly linear in $u$ because branches do not share synapses. Adding the unreliability penalty $\lambda_U\sum_i\delta_i^2(1-\bar p_i)$ and the price $\lambda_E c_k$ for each committed branch gives equations (4) and (5) of the main text. For the logistic read-out, $g=\langle(\pi-y)x\rangle$ and $H=\langle\pi(1-\pi)xx^{\top}\rangle$, so $J_{kl}=\langle\pi(1-\pi)(x^{\top}\delta^{(k)})(x^{\top}\delta^{(l)})\rangle$ can be computed from $n$ projections per sample without forming $H$.
+
+\section*{Supplementary Note 2: Ising coefficients}
+With unbalanced penalization, $F(u)=f(u)-\lambda_1(B-c^{\top}u)+\lambda_2(B-c^{\top}u)^2$ and
+\begin{align}
+a'_k&=a_k+\lambda_1c_k+\lambda_2\,(c_k^2-2Bc_k), & J'_{kl}&=J_{kl}+2\lambda_2c_kc_l, & \text{const}&=-\lambda_1B+\lambda_2B^2 .
+\end{align}
+Substituting $u_k=(1-Z_k)/2$:
+\begin{align}
+h_k&=-\frac{a'_k}{2}-\frac14\sum_{l\ne k}J'_{kl}, & K_{kl}&=\frac{J'_{kl}}{4}, & \mathrm{Var}_{\text{uniform}}(H_C)&=\sum_kh_k^2+\sum_{k<l}K_{kl}^2 .
+\end{align}
+The last identity holds because distinct Pauli-$Z$ strings are orthogonal under the uniform distribution; its square root is the normalization used for angle transfer.
+
+\section*{Supplementary Note 3: Circuits}
+
+\begin{figure}[h]
+\centering
+\begin{quantikz}[row sep=0.25cm, column sep=0.28cm]
+\lstick{$u_1$} & \gate{H} & \gate{R_Z(2\gamma h_1)} & \gate[2]{R_{ZZ}(2\gamma K_{12})} & \qw & \gate[3,label style={yshift=0.2cm}]{R_{ZZ}(2\gamma K_{13})} & \gate{R_X(-2\beta)} & \meter{} \\
+\lstick{$u_2$} & \gate{H} & \gate{R_Z(2\gamma h_2)} & \qw & \gate[2]{R_{ZZ}(2\gamma K_{23})} & \linethrough & \gate{R_X(-2\beta)} & \meter{} \\
+\lstick{$u_3$} & \gate{H} & \gate{R_Z(2\gamma h_3)} & \qw & \qw & \qw & \gate{R_X(-2\beta)} & \meter{}
+\end{quantikz}
+\caption{One QAOA layer for three branches. $R_Z(\theta)=e^{-i\theta Z/2}$, $R_{ZZ}(\theta)=e^{-i\theta ZZ/2}$, $R_X(\theta)=e^{-i\theta X/2}$; the mixer Hamiltonian is $H_M=-\sum_kX_k$.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{quantikz}[row sep=0.25cm, column sep=0.3cm]
+\lstick{$q_0$} & \gate[2]{R_{ZZ}} & \swap{1} & \qw & \qw & \gate[2]{R_{ZZ}} & \swap{1} & \qw & \qw & \qw \\
+\lstick{$q_1$} & \qw & \targX{} & \gate[2]{R_{ZZ}} & \swap{1} & \qw & \targX{} & \gate[2]{R_{ZZ}} & \swap{1} & \qw \\
+\lstick{$q_2$} & \gate[2]{R_{ZZ}} & \swap{1} & \qw & \targX{} & \gate[2]{R_{ZZ}} & \swap{1} & \qw & \targX{} & \qw \\
+\lstick{$q_3$} & \qw & \targX{} & \qw & \qw & \qw & \targX{} & \qw & \qw & \qw
+\end{quantikz}
+\caption{Odd--even swap network on four qubits. After $n$ brick layers every pair of branches has been adjacent exactly once and the order of the branches is reversed; the final permutation is undone when measurement results are assigned to classical bits. Each $R_{ZZ}$--SWAP block compiles to three CZ gates.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{quantikz}[row sep=0.22cm, column sep=0.25cm]
+\lstick{$t$}   & \gate{H} & \ctrl{1} & \qw & \qw & \gate{H} & \qw & \qw & \gate[2]{R_{XX}(-2\beta)} & \meter{} \\
+\lstick{$u_1$} & \qw & \targ{} & \ctrl{1} & \qw & \gate{H} & \gate[3,label style={yshift=0.2cm}]{R_{ZZ}(2\gamma h_1)} & \gate[2]{R_{ZZ}(2\gamma K_{12})} & \qw & \meter{} \\
+\lstick{$u_2$} & \qw & \qw & \targ{} & \ctrl{1} & \gate{H} & \linethrough & \qw & \qw & \meter{} \\
+\lstick{$b$}   & \qw & \qw & \qw & \targ{} & \gate{H} & \qw & \qw & \qw & \meter{}
+\end{quantikz}
+\caption{Error-detected QAOA in the $[[k+2,k,2]]$ code for $k=2$ (only the first gate of each type is drawn). Logical rotations: $e^{-i\theta\bar Z_i}=e^{-i\theta Z_iZ_b}$, $e^{-i\theta\bar Z_i\bar Z_j}=e^{-i\theta Z_iZ_j}$, $e^{-i\theta\bar X_i}=e^{-i\theta X_tX_i}$. A shot is accepted if the parity of all measured bits is even; the decoded bit is $u_i=m_i\oplus m_b$.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{quantikz}[row sep=0.22cm, column sep=0.3cm]
+\lstick{$m_1$} & \qw & \qw & \gate[5]{U(\tau)} & \qw & \qw & \qw & \gate[5]{U(\tau)} & \qw \\
+\lstick{$m_2$} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw \\
+\lstick{$m_3$} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw \\
+\lstick{$a_1$} & \gate{\lvert0\rangle} & \gate{R_Y(\pi s_t)} & \qw & \meter{} & \gate{\lvert0\rangle} & \gate{R_Y(\pi s_{t+1})} & \qw & \meter{} \\
+\lstick{$a_2$} & \gate{\lvert0\rangle} & \gate{R_Y(\pi m_t)} & \qw & \meter{} & \gate{\lvert0\rangle} & \gate{R_Y(\pi m_{t+1})} & \qw & \meter{}
+\end{quantikz}
+\caption{Two time steps of the collision-model reservoir. On hardware $U(\tau)$ is one first-order Trotter step, a layer of $R_{ZZ}(2J_{ij}\tau)$ on all pairs followed by $R_X(2a_i\tau)$ on all qubits.}
+\end{figure}
+
+\clearpage
+\section*{Supplementary Note 4: Algorithm}
+\textbf{One learning window of Q-ESPACE.}\\
+\textbf{Input:} spikes of the window, weights $w$, Fisher importance $F$, anchor $w^\star$, resource pool $A_t$, branch costs $c$, angles $(\boldsymbol\gamma,\boldsymbol\beta)$, shots $S$.
+\begin{enumerate}\setlength{\itemsep}{0pt}
+\item Simulate the network; draw release events $r_{i,t}$ (equation (1)); accumulate eligibility traces.
+\item Compute the error signal $m$, gradient $g$, candidates $\delta=-\eta g$ and projections $x^{\top}\delta^{(k)}$.
+\item Form $a_k$ and $J_{kl}$ (equations (4), (5)); set $B_t=\lfloor A_t\rfloor$.
+\item Form $a'$, $J'$ (equation (7)); map to $h$, $K$ (equation (8)); divide by $(\sum h_k^2+\sum K_{kl}^2)^{1/2}$.
+\item Build and transpile the QAOA circuit; sample $S$ bit strings (dynamical decoupling and twirling enabled).
+\item Discard samples with $c^{\top}u>B_t$; evaluate $f(u)$ on the rest; let $\hat u$ be the minimizer. If $f(\hat u)\ge0$ set $\hat u=0$.
+\item Commit $w\leftarrow w+\sum_k\hat u_k\delta^{(k)}$; update $A_{t+1}=\min\{A_{\max},A_t-c^{\top}\hat u+\rho\}$.
+\item At the end of a task, accumulate $F$ and set $w^\star\leftarrow w$.
+\end{enumerate}
+\textbf{Angle training (once, offline).} Minimize the mean normalized $\langle H_C\rangle$ over development instances, depth by depth, initializing depth $p+1$ by interpolating the depth-$p$ solution.
+
+\section*{Supplementary Note 5: Criteria for a quantum advantage claim}
+Let $p_\tau$ be the probability that one complete run returns a feasible allocation with $f(u)\le f^\star+\tau$, and $T_{\mathrm{run}}$ its duration including mapping, transpilation, queueing, all shots, input/output and post-processing. The time to reach the target with confidence $q$ is
+\begin{equation}
+\mathrm{TTS}_q=\left\lceil\frac{\ln(1-q)}{\ln(1-p_\tau)}\right\rceil T_{\mathrm{run}} .
+\end{equation}
+A claim requires, on a family of instances fixed in advance: (A) regret not worse than the best classical solver at an equal time budget; (B) lower $\mathrm{TTS}_{0.99}$ than tuned exact, annealing, local-search and tensor-network solvers; (C) lower measured wall-plug energy $E=\int P_{\mathrm{system}}(t)\,dt$, including refrigeration and control electronics, for the same retained accuracy of the learning system. The present work meets none of these.
+
+\section*{Supplementary Tables}
+\begin{table}[h]
+\caption{Model parameters used in all simulations.}
+\small
+\begin{tabular}{lll}
+\toprule
+Symbol & Meaning & Value \\
+\midrule
+$N_{\mathrm{in}}$, $N$, $T$ & input channels, recurrent neurons, steps per sample & 60, 96, 40 \\
+$\alpha_m$, $V_{\mathrm{th}}$ & membrane leak, threshold & 0.85, 1 \\
+$\theta_0$, $\theta_C$, $\theta_A$, $K_A$ & release-probability parameters & $\mathcal N(0.4,0.6^2)$, 0.8, 0.5, 5 \\
+$\alpha_C$, $\kappa_C$ & calcium decay and increment & 0.8, 0.5 \\
+$\tau_R$, $\nu_R$ & vesicle recovery time, depletion per release & 8, 0.35 \\
+$\lambda_e$ & eligibility decay & 0.92 \\
+$n$, $c_k$ & branches, cost per branch & 12, $\{1,2,3\}$ \\
+$A_{\max}$, $\rho$ & resource pool capacity, refill per window & 12, 6 \\
+$\eta$, $\lambda_F$, $\lambda_U$, $\lambda_E$ & step size and objective weights & 1, 8, 0.5, $2\times10^{-4}$ \\
+$\lambda_1$, $\lambda_2$ & unbalanced-penalization weights & $0.5\,\bar a$, $0.01\,\bar a$ \\
+$p$, $S$ & QAOA depth, shots per window & 2, 256 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{document}

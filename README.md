@@ -38,5 +38,14 @@ Two routes (task **D3**):
    against tuned classical solvers (A5–A8, Q7), which the completion guide calls "the
    experiment that decides the paper."
 
-The paper source and code are not in this repository; keep them in a private repository
-until submission.
+## Contents
+
+* `TASKS.md` — the task list.
+* `QESPACE_code/` — simulation code, experiment scripts, tests, the Qiskit/IBM runner,
+  and the `results/` JSON this draft's numbers come from.
+* `QESPACE_overleaf/` — LaTeX source for the manuscript and supplementary information.
+* `QESPACE_manuscript (1).docx`, `QESPACE_completion_guide (1).docx` — the manuscript and
+  completion-guide Word files.
+* `QESPACE_manuscript_latex_preview.pdf` — rendered preview of the LaTeX source.
+
+This repository is **private** — it holds an unpublished draft and unreviewed results.
